@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Server | Minecraft 1.20.1</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Хедер -->
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">S6</div>
+                <div class="logo-text">Survival</div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Главная</a>
+                <a href="#admins" class="nav-link">Админы</a>
+                <a href="#support" class="nav-link">Поддержка</a>
+                <a href="#connect" class="connect-btn">Подключиться</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Главный баннер -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">SURVIVAL SERVER</h1>
+            <p class="hero-subtitle">Minecraft 1.20.1 • Ванильное выживание • Активное сообщество</p>
+            
+            <div class="server-ip-box">
+                <h3>IP АДРЕС СЕРВЕРА</h3>
+                <div class="ip-display" id="server-ip">SURVIVALwOrld232.aternos.me</div>
+                <button class="connect-btn" onclick="copyIP()">Скопировать IP</button>
+                <p style="margin-top: 1rem; color: #8B8B8B; font-size: 0.9rem;">
+                    Версия: 1.20.1 • Онлайн: 10/20
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Администрация -->
+    <section id="admins" class="section">
+        <h2 class="section-title">Администрация</h2>
+        
+        <div class="admin-grid">
+            <!-- Владелец -->
+            <div class="admin-card admin-owner fade-in">
+                <div class="admin-header">
+                    <div class="admin-avatar">K</div>
+                    <div class="admin-info">
+                        <h3>KeneGmy</h3>
+                        <div class="admin-role">ВЛАДЕЛЕЦ СЕРВЕРА</div>
+                    </div>
+                </div>
+                <p class="admin-desc">Создатель сервера, главный администратор, отвечает за развитие проекта.</p>
+            </div>
+
+            <!-- Админы -->
+            <div class="admin-card fade-in">
+                <div class="admin-header">
+                    <div class="admin-avatar">B</div>
+                    <div class="admin-info">
+                        <h3>bondit</h3>
+                        <div class="admin-role">АДМИНИСТРАТОР</div>
+                    </div>
+                </div>
+                <p class="admin-desc">Модерация, поддержка порядка на сервере, помощь игрокам.</p>
+            </div>
+
+            <div class="admin-card fade-in">
+                <div class="admin-header">
+                    <div class="admin-avatar">M</div>
+                    <div class="admin-info">
+                        <h3>meeerc</h3>
+                        <div class="admin-role">ВЕБ-РАЗРАБОТЧИК</div>
+                    </div>
+                </div>
+                <p class="admin-desc">Создатель этого сайта, улучшает проект, техническая поддержка.</p>
+            </div>
+
+            <div class="admin-card fade-in">
+                <div class="admin-header">
+                    <div class="admin-avatar">К</div>
+                    <div class="admin-info">
+                        <h3>кишмиш</h3>
+                        <div class="admin-role">АДМИНИСТРАТОР</div>
+                    </div>
+                </div>
+                <p class="admin-desc">Средний админ, купил статус, помогает в модерации.</p>
+            </div>
+        </div>
+
+        <!-- Как стать админом -->
+        <div class="buy-admin-section fade-in">
+            <h2 class="section-title">Стать админом</h2>
+            
+            <div class="price-tag">100₽</div>
+            <p style="text-align: center; color: #8B8B8B; margin-bottom: 2rem;">
+                Разовый платёж за статус администратора
+            </p>
+            
+            <div class="admin-features">
+                <div class="feature-item">
+                    <h4>Что получаете</h4>
+                    <p>Статус Administrator в игре</p>
+                    <p>Доступ к командным блокам</p>
+                    <p>Права на модерацию</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>Требования</h4>
+                    <p>Играть от 2 недель</p>
+                    <p>Знать правила</p>
+                    <p>Без нарушений</p>
+                </div>
+                
+                <div class="feature-item">
+                    <h4>Процесс</h4>
+                    <p>Оплата 100₽ через DonationAlerts</p>
+                    <p>Подтверждение у KeneGmy</p>
+                    <p>Получение прав</p>
+                </div>
+            </div>
+            
+            <a href="https://www.donationalerts.com/r/bladelez" target="_blank" class="donate-btn">
+                Купить статус админа
+            </a>
+        </div>
+    </section>
+
+    <!-- Поддержка -->
+    <section id="support" class="section">
+        <h2 class="section-title">Техническая поддержка</h2>
+        
+        <div class="support-card fade-in">
+            <div class="bot-icon">🤖</div>
+            <h3>@HelpSurvivalbot</h3>
+            <p>Telegram-бот для быстрой помощи и поддержки</p>
+            <p style="color: #8B8B8B; margin: 1rem 0;">Проверка банов, жалобы, техподдержка 24/7</p>
+            
+            <a href="https://t.me/HelpSurvivalbot" target="_blank" class="support-btn">
+                Перейти в бота
+            </a>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Survival Server</h3>
+                <p>Minecraft 1.20.1 Survival</p>
+                <p>IP: SURVIVALwOrld232.aternos.me</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Ссылки</h3>
+                <div class="footer-links">
+                    <a href="#home">Главная</a>
+                    <a href="#admins">Админы</a>
+                    <a href="#support">Поддержка</a>
+                    <a href="https://t.me/HelpSurvivalbot">Telegram бот</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>По вопросам админки:</p>
+                <p>Telegram: @KeneGmy</p>
+                <p>После оплаты писать сюда</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2024 Survival Server. Minecraft © Mojang AB. Неофициальный сервер.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

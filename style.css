@@ -1,0 +1,454 @@
+/* СБРОС И БАЗОВЫЕ СТИЛИ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --minecraft-green: #55FF55;
+    --minecraft-dark: #2D2D2D;
+    --minecraft-gray: #8B8B8B;
+    --minecraft-light: #F5F5F5;
+    --minecraft-red: #FF5555;
+    --minecraft-blue: #5555FF;
+    --minecraft-gold: #FFAA00;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: white;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ХЕДЕР */
+header {
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--minecraft-green);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--minecraft-green);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--minecraft-green), #7CFC00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.nav-link:hover {
+    color: var(--minecraft-green);
+    background: rgba(85, 255, 85, 0.1);
+}
+
+.nav-link.active {
+    color: var(--minecraft-green);
+    background: rgba(85, 255, 85, 0.15);
+}
+
+.connect-btn {
+    background: var(--minecraft-green);
+    color: black;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.connect-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(85, 255, 85, 0.3);
+}
+
+/* ГЛАВНЫЙ БАННЕР */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, 
+            rgba(10, 10, 10, 0.9) 0%,
+            rgba(10, 10, 10, 0.7) 100%),
+        url('https://i.imgur.com/minecraft-bg.jpg') center/cover;
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #fff, var(--minecraft-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(85, 255, 85, 0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--minecraft-gray);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.server-ip-box {
+    background: rgba(20, 20, 20, 0.8);
+    border: 2px solid var(--minecraft-green);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+}
+
+.ip-display {
+    font-family: 'Courier New', monospace;
+    font-size: 1.8rem;
+    color: var(--minecraft-green);
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+/* СЕКЦИИ */
+.section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--minecraft-green);
+    margin: 10px auto;
+}
+
+/* АДМИНИСТРАЦИЯ */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.admin-card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid rgba(85, 255, 85, 0.2);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--minecraft-green);
+}
+
+.admin-owner {
+    border: 2px solid var(--minecraft-gold);
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #333, #555);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.admin-owner .admin-avatar {
+    background: linear-gradient(45deg, var(--minecraft-gold), #FFD700);
+    color: black;
+}
+
+.admin-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.admin-role {
+    color: var(--minecraft-green);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.admin-desc {
+    color: var(--minecraft-gray);
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+
+/* КАК СТАТЬ АДМИНОМ */
+.buy-admin-section {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 15px;
+    padding: 3rem;
+    margin-top: 3rem;
+    border: 2px solid var(--minecraft-gold);
+}
+
+.price-tag {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--minecraft-gold);
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.admin-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.feature-item {
+    background: rgba(40, 40, 40, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--minecraft-green);
+}
+
+.feature-item h4 {
+    color: var(--minecraft-green);
+    margin-bottom: 0.5rem;
+}
+
+.donate-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+    background: linear-gradient(45deg, var(--minecraft-gold), #FFD700);
+    color: black;
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.donate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 170, 0, 0.3);
+}
+
+/* ПОДДЕРЖКА */
+.support-card {
+    background: rgba(20, 20, 20, 0.8);
+    border-radius: 15px;
+    padding: 3rem;
+    text-align: center;
+    border: 2px solid var(--minecraft-blue);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.bot-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, var(--minecraft-blue), #0088FF);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 1.5rem;
+}
+
+.support-btn {
+    display: inline-block;
+    background: var(--minecraft-blue);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.support-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ФУТЕР */
+footer {
+    background: rgba(13, 13, 13, 0.95);
+    padding: 3rem 2rem;
+    margin-top: 5rem;
+    border-top: 2px solid var(--minecraft-green);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--minecraft-green);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-links a {
+    display: block;
+    color: var(--minecraft-gray);
+    text-decoration: none;
+    margin: 0.5rem 0;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--minecraft-green);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(85, 255, 85, 0.2);
+    color: var(--minecraft-gray);
+    font-size: 0.9rem;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .section {
+        padding: 3rem 1rem;
+    }
+    
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .buy-admin-section {
+        padding: 2rem 1rem;
+    }
+}
+
+/* АНИМАЦИИ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
