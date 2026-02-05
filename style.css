@@ -1,43 +1,118 @@
-/* СБРОС И БАЗОВЫЕ СТИЛИ */
+/* Основные стили и анимации */
+:root {
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #00ff88;
+    --accent-glow: rgba(0, 255, 136, 0.3);
+    --danger: #ff5555;
+    --warning: #ffaa00;
+    --info: #5555ff;
+    --dark: #0a0a0f;
+    --light: #f0f0f0;
+    --gray: #8b8b8b;
+    --card-bg: rgba(26, 26, 46, 0.8);
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+/* Анимации */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 10px var(--accent-glow); }
+    50% { box-shadow: 0 0 20px var(--accent); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes flipIn {
+    from { opacity: 0; transform: rotateY(90deg); }
+    to { opacity: 1; transform: rotateY(0); }
+}
+
+@keyframes rotateIn {
+    from { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+    to { opacity: 1; transform: rotate(0) scale(1); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Основные стили */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --minecraft-green: #55FF55;
-    --minecraft-dark: #2D2D2D;
-    --minecraft-gray: #8B8B8B;
-    --minecraft-light: #F5F5F5;
-    --minecraft-red: #FF5555;
-    --minecraft-blue: #5555FF;
-    --minecraft-gold: #FFAA00;
-}
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0a0a0a;
-    color: white;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+    color: var(--light);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* ХЕДЕР */
-header {
-    background: rgba(13, 13, 13, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
+/* Хедер */
+.header-animate {
     position: fixed;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 1000;
-    border-bottom: 2px solid var(--minecraft-green);
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    animation: slideDown 0.5s ease;
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,306 +122,1027 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--minecraft-green);
-    border-radius: 5px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(45deg, var(--accent), #00cc6a);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    color: black;
+    font-weight: 900;
     font-size: 1.5rem;
+    color: var(--dark);
+}
+
+.pulse {
+    animation: pulse 2s infinite;
 }
 
 .logo-text {
     font-size: 1.8rem;
     font-weight: 800;
-    background: linear-gradient(45deg, var(--minecraft-green), #7CFC00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     letter-spacing: 1px;
+}
+
+.logo-highlight {
+    color: var(--accent);
+    margin-left: 2px;
 }
 
 .nav-menu {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .nav-link {
-    color: white;
+    color: var(--light);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .nav-link:hover {
-    color: var(--minecraft-green);
-    background: rgba(85, 255, 85, 0.1);
+    color: var(--accent);
+    background: rgba(0, 255, 136, 0.1);
 }
 
 .nav-link.active {
-    color: var(--minecraft-green);
-    background: rgba(85, 255, 85, 0.15);
+    color: var(--accent);
+    background: rgba(0, 255, 136, 0.15);
 }
 
 .connect-btn {
-    background: var(--minecraft-green);
-    color: black;
+    background: linear-gradient(45deg, var(--accent), #00cc6a);
+    color: var(--dark);
     padding: 0.8rem 1.5rem;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    transition: transform 0.3s;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
 }
 
 .connect-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(85, 255, 85, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
 }
 
-/* ГЛАВНЫЙ БАННЕР */
+/* Главный баннер */
 .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 0 2rem;
+    padding: 6rem 2rem 4rem;
     position: relative;
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        linear-gradient(45deg, 
-            rgba(10, 10, 10, 0.9) 0%,
-            rgba(10, 10, 10, 0.7) 100%),
-        url('https://i.imgur.com/minecraft-bg.jpg') center/cover;
+    background: radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(85, 85, 255, 0.1) 0%, transparent 50%);
     z-index: -1;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 1200px;
     z-index: 1;
 }
 
+.slide-up {
+    animation: slideUp 1s ease-out;
+}
+
+.title-container {
+    margin-bottom: 3rem;
+}
+
 .hero-title {
-    font-size: 4rem;
-    font-weight: 800;
+    font-size: 4.5rem;
+    font-weight: 900;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #fff, var(--minecraft-green));
+    background: linear-gradient(45deg, var(--light), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(85, 255, 85, 0.3);
+    position: relative;
+}
+
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch 2s infinite linear alternate-reverse;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
-    color: var(--minecraft-gray);
-    margin-bottom: 3rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.3rem;
+    color: var(--gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
+.typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--accent);
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+.server-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.server-status.online {
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--accent);
+}
+
+/* IP бокс */
 .server-ip-box {
-    background: rgba(20, 20, 20, 0.8);
-    border: 2px solid var(--minecraft-green);
-    border-radius: 10px;
+    background: rgba(26, 26, 46, 0.8);
+    border: 2px solid var(--accent);
+    border-radius: 15px;
     padding: 2rem;
     margin: 2rem auto;
-    max-width: 500px;
+    max-width: 600px;
     backdrop-filter: blur(10px);
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.glow {
+    animation: glow 2s infinite;
+}
+
+.ip-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.ip-header h3 {
+    color: var(--accent);
+    font-size: 1.1rem;
 }
 
 .ip-display {
     font-family: 'Courier New', monospace;
     font-size: 1.8rem;
-    color: var(--minecraft-green);
-    margin: 1rem 0;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    letter-spacing: 1px;
-}
-
-/* СЕКЦИИ */
-.section {
-    padding: 5rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    text-align: center;
-    color: white;
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--minecraft-green);
-    margin: 10px auto;
-}
-
-/* АДМИНИСТРАЦИЯ */
-.admin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.admin-card {
-    background: rgba(20, 20, 20, 0.8);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
     border-radius: 10px;
-    padding: 2rem;
-    border: 1px solid rgba(85, 255, 85, 0.2);
-    transition: transform 0.3s, border-color 0.3s;
-}
-
-.admin-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--minecraft-green);
-}
-
-.admin-owner {
-    border: 2px solid var(--minecraft-gold);
-}
-
-.admin-header {
+    margin: 1rem 0;
+    border: 1px solid rgba(0, 255, 136, 0.3);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ip-display:hover {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.copy-icon {
+    color: var(--accent);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+.copy-icon:hover {
+    transform: scale(1.2);
+}
+
+.ip-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gray);
+}
+
+.connect-btn-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(45deg, var(--accent), #00cc6a);
+    color: var(--dark);
+    padding: 1.2rem 2.5rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: all 0.3s;
+}
+
+.connect-btn-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+}
+
+/* Статистика */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.stat-card {
+    background: var(--glass);
+    padding: 1.5rem;
+    border-radius: 10px;
+    min-width: 150px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--accent);
     margin-bottom: 1rem;
 }
 
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--light);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Секции */
+.section {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.section-subtitle {
+    color: var(--gray);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Особенности сервера */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.slide-left { animation: slideLeft 0.8s ease-out; }
+.slide-up { animation: slideUp 0.8s ease-out; }
+.slide-right { animation: slideRight 0.8s ease-out; }
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--light);
+}
+
+/* Правила */
+.rules-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.rule-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.rule-ok {
+    color: var(--accent);
+}
+
+/* Администрация */
+.admin-section {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.5) 0%, rgba(22, 33, 62, 0.5) 100%);
+    border-radius: 20px;
+    margin: 2rem;
+}
+
+.admin-hierarchy {
+    margin-top: 3rem;
+}
+
+.admin-tier {
+    margin-bottom: 3rem;
+}
+
+.tier-label {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent);
+}
+
+/* Карточки админов */
+.admin-card-main {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(85, 85, 255, 0.1));
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.scale-in {
+    animation: scaleIn 0.8s ease-out;
+}
+
+.admin-card-tech {
+    background: linear-gradient(135deg, rgba(85, 85, 255, 0.1), rgba(255, 85, 85, 0.1));
+    border: 2px solid var(--info);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.slide-in-right {
+    animation: slideRight 0.8s ease-out;
+}
+
+.admin-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.admin-card-regular {
+    background: var(--card-bg);
+    border: 2px solid var(--warning);
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.flip-in {
+    animation: flipIn 1s ease-out;
+}
+
+.admin-card-junior {
+    background: var(--card-bg);
+    border: 2px solid var(--gray);
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.rotate-in {
+    animation: rotateIn 1s ease-out;
+}
+
+/* Аватары админов */
 .admin-avatar {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, #333, #555);
-    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    position: relative;
+}
+
+.admin-avatar.owner {
+    background: linear-gradient(135deg, var(--warning), #ff8800);
+    color: var(--dark);
+}
+
+.admin-avatar.tech {
+    background: linear-gradient(135deg, var(--info), #8888ff);
+    color: white;
+}
+
+.admin-avatar.regular {
+    background: linear-gradient(135deg, var(--accent), #00aa55);
+    color: var(--dark);
+}
+
+.admin-avatar.junior {
+    background: linear-gradient(135deg, var(--gray), #666666);
+    color: white;
+}
+
+.crown, .gear {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--dark);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.crown {
+    color: var(--warning);
+}
+
+.gear {
+    color: var(--info);
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Информация админов */
+.admin-info {
+    flex: 1;
+}
+
+.admin-info h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+}
+
+.admin-role {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.admin-desc {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.admin-contacts, .admin-skills, .admin-stats, .admin-badge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.contact-tag, .skill-tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Стать админом */
+.become-admin-container {
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.1), rgba(255, 85, 85, 0.1));
+    border: 2px solid var(--warning);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-top: 4rem;
+}
+
+.become-admin-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.become-admin-header h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.admin-process {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.process-step {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--warning);
+    color: var(--dark);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+    font-weight: 900;
+    margin: 0 auto 1rem;
 }
 
-.admin-owner .admin-avatar {
-    background: linear-gradient(45deg, var(--minecraft-gold), #FFD700);
-    color: black;
-}
-
-.admin-info h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.3rem;
-}
-
-.admin-role {
-    color: var(--minecraft-green);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.admin-desc {
-    color: var(--minecraft-gray);
-    line-height: 1.5;
+.small-btn {
+    display: inline-block;
+    background: var(--warning);
+    color: var(--dark);
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
     margin-top: 1rem;
+    transition: all 0.3s;
 }
 
-/* КАК СТАТЬ АДМИНОМ */
-.buy-admin-section {
-    background: rgba(20, 20, 20, 0.8);
-    border-radius: 15px;
-    padding: 3rem;
+.small-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 170, 0, 0.3);
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+}
+
+.admin-warning {
+    background: rgba(255, 85, 85, 0.1);
+    border: 1px solid var(--danger);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.admin-warning i {
+    color: var(--danger);
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+/* Нейросеть */
+.ai-section {
+    background: linear-gradient(135deg, rgba(157, 80, 187, 0.1), rgba(106, 17, 203, 0.1));
+    border-radius: 20px;
+    margin: 2rem;
+}
+
+.ai-container {
     margin-top: 3rem;
-    border: 2px solid var(--minecraft-gold);
 }
 
-.price-tag {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--minecraft-gold);
-    text-align: center;
-    margin: 1rem 0;
+.ai-card-main {
+    background: rgba(26, 26, 46, 0.9);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 2rem;
 }
 
-.admin-features {
+.glow-border {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                linear-gradient(45deg, #9D50BB, #6A11CB, #00ff88) border-box;
+}
+
+.ai-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.ai-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #9D50BB, #6A11CB);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+}
+
+.ai-title h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.ai-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 1rem;
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Возможности ИИ */
+.capabilities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
 }
 
-.feature-item {
-    background: rgba(40, 40, 40, 0.5);
-    padding: 1rem;
-    border-radius: 8px;
-    border-left: 3px solid var(--minecraft-green);
-}
-
-.feature-item h4 {
-    color: var(--minecraft-green);
-    margin-bottom: 0.5rem;
-}
-
-.donate-btn {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    margin: 2rem auto;
-    background: linear-gradient(45deg, var(--minecraft-gold), #FFD700);
-    color: black;
-    padding: 1.2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.donate-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(255, 170, 0, 0.3);
-}
-
-/* ПОДДЕРЖКА */
-.support-card {
-    background: rgba(20, 20, 20, 0.8);
+.capability {
+    background: rgba(157, 80, 187, 0.1);
+    padding: 1.5rem;
     border-radius: 15px;
-    padding: 3rem;
-    text-align: center;
-    border: 2px solid var(--minecraft-blue);
-    max-width: 600px;
-    margin: 0 auto;
+    border-left: 3px solid #9D50BB;
 }
 
-.bot-icon {
+.capability i {
+    font-size: 2rem;
+    color: #9D50BB;
+    margin-bottom: 1rem;
+}
+
+.capability h5 {
+    margin-bottom: 0.5rem;
+    color: var(--light);
+}
+
+.capability p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* API секция */
+.ai-api-section {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.api-key-container {
+    margin-top: 1rem;
+}
+
+.api-key-display {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(157, 80, 187, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.api-key-display code {
+    font-family: 'Courier New', monospace;
+    color: #9D50BB;
+    word-break: break-all;
+    font-size: 0.9rem;
+}
+
+.copy-api-btn {
+    background: #9D50BB;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-api-btn:hover {
+    background: #6A11CB;
+    transform: scale(1.1);
+}
+
+.api-warning {
+    color: var(--warning);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Примеры запросов */
+.ai-examples {
+    margin-top: 2rem;
+}
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.example-query {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+    font-style: italic;
+    color: var(--gray);
+    transition: all 0.3s;
+}
+
+.example-query:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+/* Чат с ИИ */
+.ai-chat-demo {
+    background: rgba(26, 26, 46, 0.9);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 2px solid rgba(0, 255, 136, 0.2);
+}
+
+.chat-header {
+    margin-bottom: 1.5rem;
+}
+
+.chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.message {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message.ai {
+    flex-direction: row;
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.message.ai .avatar {
+    background: linear-gradient(45deg, #9D50BB, #6A11CB);
+}
+
+.message.user .avatar {
+    background: linear-gradient(45deg, var(--accent), #00cc6a);
+    color: var(--dark);
+}
+
+.message .content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 15px;
+    max-width: 70%;
+}
+
+.message.ai .content {
+    border-bottom-left-radius: 5px;
+}
+
+.message.user .content {
+    border-bottom-right-radius: 5px;
+}
+
+.chat-input {
+    display: flex;
+    gap: 1rem;
+}
+
+.chat-input input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    color: white;
+    font-size: 1rem;
+}
+
+.chat-input input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chat-input button {
+    background: linear-gradient(45deg, var(--accent), #00cc6a);
+    color: var(--dark);
+    border: none;
+    width: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.chat-input button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Поддержка */
+.support-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.support-card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+.support-card:hover {
+    transform: translateY(-10px);
+}
+
+.support-card:nth-child(1) {
+    border-color: var(--info);
+}
+
+.support-card:nth-child(2) {
+    border-color: var(--accent);
+}
+
+.support-card:nth-child(3) {
+    border-color: var(--warning);
+}
+
+.support-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(45deg, var(--minecraft-blue), #0088FF);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -355,100 +1151,345 @@ header {
     margin: 0 auto 1.5rem;
 }
 
+.support-icon.telegram {
+    background: linear-gradient(45deg, var(--info), #8888ff);
+    color: white;
+}
+
+.support-icon.admin {
+    background: linear-gradient(45deg, var(--accent), #00aa55);
+    color: var(--dark);
+}
+
+.support-icon.docs {
+    background: linear-gradient(45deg, var(--warning), #ffaa33);
+    color: var(--dark);
+}
+
 .support-btn {
     display: inline-block;
-    background: var(--minecraft-blue);
+    background: var(--info);
     color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: bold;
-    margin-top: 1.5rem;
-    transition: transform 0.3s;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    transition: all 0.3s;
 }
 
 .support-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(85, 85, 255, 0.3);
 }
 
-/* ФУТЕР */
+.support-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.contact-list {
+    margin: 1.5rem 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+}
+
+.contact-item i {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.docs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.doc-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: var(--light);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.doc-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.doc-link i {
+    color: var(--warning);
+}
+
+/* Футер */
 footer {
-    background: rgba(13, 13, 13, 0.95);
-    padding: 3rem 2rem;
+    background: rgba(10, 10, 15, 0.95);
     margin-top: 5rem;
-    border-top: 2px solid var(--minecraft-green);
+    border-top: 1px solid rgba(0, 255, 136, 0.2);
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 4rem 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 3rem;
 }
 
-.footer-section h3 {
-    color: var(--minecraft-green);
-    margin-bottom: 1rem;
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-description {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--light);
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    background: var(--accent);
+    color: var(--dark);
+    transform: translateY(-3px);
+}
+
+.footer-links h4, .footer-info h4, .footer-legal h4 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
     font-size: 1.2rem;
 }
 
 .footer-links a {
-    display: block;
-    color: var(--minecraft-gray);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--gray);
     text-decoration: none;
-    margin: 0.5rem 0;
-    transition: color 0.3s;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s;
 }
 
 .footer-links a:hover {
-    color: var(--minecraft-green);
+    color: var(--accent);
+    transform: translateX(5px);
+}
+
+.footer-info p, .footer-legal p {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    color: var(--gray);
+}
+
+.footer-info i, .footer-legal i {
+    color: var(--accent);
+    width: 20px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    text-align: center;
 }
 
 .copyright {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(85, 255, 85, 0.2);
-    color: var(--minecraft-gray);
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+
+.minecraft-notice {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+.footer-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: var(--gray);
     font-size: 0.9rem;
 }
 
-/* АДАПТИВНОСТЬ */
+.separator {
+    opacity: 0.5;
+}
+
+/* Кнопка наверх */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    color: var(--dark);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+}
+
+/* Прокрутка вниз */
+.scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent);
+    font-size: 2rem;
+}
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Частицы */
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .admin-card-main,
+    .admin-card-tech {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
     }
     
-    .nav-menu {
-        display: none;
+    .ip-display {
+        font-size: 1.3rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .stats-container {
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        min-width: 120px;
     }
     
     .section {
         padding: 3rem 1rem;
     }
     
-    .admin-grid {
+    .ai-card-main,
+    .become-admin-container {
+        padding: 1.5rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-links a {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .admin-cards-grid {
         grid-template-columns: 1fr;
     }
     
-    .buy-admin-section {
-        padding: 2rem 1rem;
+    .capabilities-grid {
+        grid-template-columns: 1fr;
     }
-}
-
-/* АНИМАЦИИ */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeInUp 0.6s ease-out forwards;
 }
